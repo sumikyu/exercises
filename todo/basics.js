@@ -3,11 +3,12 @@
 */
 
 /*
-  Arregla el error
+  Arregla los errores
 */
 
 const firstName = Jose Miguel;
 const lastName = González García;
+const fullName = firstName + lastName;
 
 
 /*
@@ -37,3 +38,10 @@ sum = sum +1;
  Declara una variable con una cadena de texto y escribe en la consola el texto "Mi cadena de texto tiene [NUMERO] caracteres", donde [NUMERO] será el tamaño de esa cadena de texto. 
  Por ejemplo, si la cadena de texto es "hola", el resultado debe ser "Mi cadena de texto tiene 4 caracteres".
 */
+
+
+/*
+ Declara una variable numérica, y 3 más de tipo booleano, una que indique si es mayor que 3, otra que indique si es menor que 5 y otra que indique si es igual a 8.
+*/
+
+
