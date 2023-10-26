@@ -60,7 +60,7 @@
 
   Esta función debe devolver 'coche', 'moto', 'patinete', 'bicicleta' o 'desconocido':
   - Los coches tienen 4 ruedas, no tienen pedales y pueden ser eléctricos o de gasolina.
-  - Las motos solo tienen 2 rueda, pueden ser eléctricas o de gasolina y no tienen pedales
+  - Las motos solo tienen 2 rueda, pueden ser de gasolina y no tienen pedales
   - Las bicicletas solo tienen 2 ruedas y pueden ser eléctricas o manuales y tienen pedales.
   - Los patinetes solo tienen 2 ruedas, pueden ser eléctricos o manuales y no tienen pedales pedales.
   - En cualquier otro caso devuelve desconocido.
