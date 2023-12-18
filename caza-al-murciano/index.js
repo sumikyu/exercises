@@ -56,3 +56,40 @@ function startGame() {
   pickJosemi();
   return setInterval(pickJosemi, 1000);
 }
+
+function startGame(){
+
+}
+
+const ctaButton=document.querySelector('.cta--start');
+ctaButton.addEventListener('click', function () {
+  startGame();
+  ctaButton.styke.display = 'none';
+});
+
+const totalPointsNode = document.querySelector('totalPoints');
+
+document.querySelector('.cta--start').addEventListener('click', startGame);
+
+document.querySelectorAll('.josemi').forEach((josemiNode) => {
+  josemiNode.addEventListener('click', () => {
+
+    let totalPoints = Number(totalPointsNode.innerText) + 1;
+
+    if (josemiNode.classList.contains('josemi--sm')) {
+      totalPoints = totalPoints + 1;
+    }
+
+    totalPointsNode.innerText = totalPoints;
+  });
+});
+
+document.querySelectorAll('.josemi').forEach((josemiNode) => {
+  josemiNode.addEventListener('click', () => {
+    const pointsToAdd =josemiNode.classList.contains('josemi--sm') ? 2 : 1;
+
+    let totalPoints = Number(totalPointsNode.innerText) + pointsToAdd;
+
+    totalPointsNode.innerText = totalPoints;
+  });
+});
