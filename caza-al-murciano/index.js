@@ -1,4 +1,5 @@
-function startGame() {
+function JosemisHunter () {
+  let gameIntervalId;
   const availableClasses = [
     'josemi--t',
     'josemi--b',
@@ -13,6 +14,15 @@ function startGame() {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
+  this.start = () => {
+    pickJosemi ();
+    setInterval(pickJosemi, 1000);
+  };
+  
+  this.stop = () => {
+    clearInterval(gameIntervalId)
   }
 
   function pickJosemi() {
@@ -38,6 +48,7 @@ function startGame() {
     });
 
     setTimeout(() => {
+      //este es el código que se va a ejecutar cuando se cumpla el tiempo del timeout. 400 = tiempo en milisegundos que va a tardar esta funcion en ejecutarse
       josemiNode.classList.add('josemi--show');
     }, 400);
 
@@ -57,32 +68,27 @@ function startGame() {
   return setInterval(pickJosemi, 1000);
 }
 
-function startGame(){
-
-}
-
-const ctaButton=document.querySelector('.cta--start');
+const usernameInput = document.querySelector('.username-input');  
+const ctaButton = document.querySelector('.cta--start');
 ctaButton.addEventListener('click', function () {
-  startGame();
-  ctaButton.styke.display = 'none';
-});
+  totalPointsNode.innerText = 0; 
+  josemisGame.start();
+  const gameIntervalId = startGame();
 
-const totalPointsNode = document.querySelector('totalPoints');
+  ctaButton.style.display = 'none';
 
-document.querySelector('.cta--start').addEventListener('click', startGame);
+  setTimeout(() => {
+    josemisGame.stop();
+    clearInterval(gameIntervalId);
+    ctaButton.style.display = 'inline-block';  
+  }, 30000);
 
-document.querySelectorAll('.josemi').forEach((josemiNode) => {
-  josemiNode.addEventListener('click', () => {
+  localStorage.setItem(playerName,usernameInput.value);
+  console.log(usernameInput.value);
+}); 
 
-    let totalPoints = Number(totalPointsNode.innerText) + 1;
+const totalPointsNode = document.querySelector('#totalPoints');
 
-    if (josemiNode.classList.contains('josemi--sm')) {
-      totalPoints = totalPoints + 1;
-    }
-
-    totalPointsNode.innerText = totalPoints;
-  });
-});
 
 document.querySelectorAll('.josemi').forEach((josemiNode) => {
   josemiNode.addEventListener('click', () => {
@@ -92,4 +98,31 @@ document.querySelectorAll('.josemi').forEach((josemiNode) => {
 
     totalPointsNode.innerText = totalPoints;
   });
+});
+
+const hammerNode =  document.querySelector('.hammer');
+;
+document.addEventListener("mousemove", (event) => {
+
+  const clientX = event.clientX;
+  const clientY = event.clientY;
+
+  hammerNode.style.top = clientY;
+  hammerNode.style.left = clientX;
+});
+
+document.addEventListener('mousedown', () => {
+  hammerNode.classList.add('hammer--pressed');
+});
+
+document.addEventListener('mouseup', () => {  
+  hammerNode.classList.remove('hammer--pressed');
+});
+
+const josemi = new JosemisHunter();
+
+console.log(josemi);
+
+document.querySelector('.username-input').addEventListener('input', function (event) {
+  ctaButtonNode.disabled = !event.target.value;
 });
